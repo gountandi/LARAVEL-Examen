@@ -20,6 +20,15 @@ Route::middleware('auth')->group(function () {
      * Route::ressource('models', Controller::class)
      */
 
+    Route::get('/commandes', function () {
+        return view("commandes.index");
+    })->name('commandes.index');
+
+    Route::get('/produits', function () {
+        return view("produits.index");
+    })->name('produits.index');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
