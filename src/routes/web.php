@@ -1,7 +1,7 @@
 <?php
 
-// use App\Http\Controllers\ProduitController;
-// use App\Http\Controllers\CommandeController;
+ use App\Http\Controllers\ProduitController;
+ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +20,11 @@ Route::middleware('auth')->group(function () {
      * Route::ressource('models', Controller::class)
      */
 
-    Route::get('/commandes', function () {
-        return view("commandes.index");
-    })->name('commandes.index');
+    Route::resource('produits', ProduitController::class);
+    Route::resource('commandes', CommandeController::class);
 
-    Route::get('/produits', function () {
-        return view("produits.index");
-    })->name('produits.index');
 
+    
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

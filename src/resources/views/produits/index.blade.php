@@ -12,16 +12,20 @@
                     {{ __("Liste des produits") }}
                 </div>
                 <div>
-                    <a href="">
+                <form action="{{route('produits.create')}}" method="get">
+                        @csrf
                         <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Ajouter</button>
-                    </a>
+                    </form>
                 </div>
             </div>
             <div class="bg-white flex items-center justify-between mx-6 px-6 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                <div class="p-6 w-full space-y-6">
                     <div class="w-full">
-                        <input type="text" placeholder="Rechercher" class="w-2/3 rounded-md border border-gray-300">
-                        <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Rechercher</button>
+                        <form action="{{route('produits.index')}}" method="get">
+                            <input type="text" placeholder="Rechercher" class="w-2/3 rounded-md border border-gray-300" name="search">
+                            <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Rechercher</button>
+                        </form>
+                        
                     </div>
                     <table class="w-full text-left">
                         <thead class="text-lg font-semibold bg-gray-300">
@@ -32,35 +36,40 @@
                             <th class="py-3 px-6">Actions</th>
                         </thead>
                         <tbody>
+                        @forelse($produits as $produit)
                             <tr class="bg-gray-100">
+                            <td class="py-3 px-6"><img src="/images/{{ $produit->image }}" width="100px"></td>
                                 <td class="py-3 px-6">
-
+                                {{$produit->libelle}}
                                 </td>
                                 <td class="py-3 px-6">
-
+                                {{$produit->prix}}
                                 </td>
                                 <td class="py-3 px-6">
-
+                                {{$produit->quantite}}
                                 </td>
                                 <td class="py-3 px-6">
-
-                                </td>
-                                <td class="py-3 px-6">
-                                    <a href="">
+                                    <a href="{{route('produits.edit',$produit)}}">
                                         <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Editer</button>
                                     </a>
-                                    <a href="">
+                                    <a href="{{route('produits.show',$produit)}}">
                                         <button class="bg-yellow-600 hover:bg-yellow-500 text-white text-sm px-3 py-2 rounded-md">Consulter</button>
                                     </a>
-                                    <a href="">
-                                        <button class="bg-red-600 hover:bg-red-500 text-white text-sm px-3 py-2 rounded-md">Supprimer</button>
-                                    </a>
+                                    <form action="{{route('produits.destroy',$produit)}}" method="post">
+
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="bg-red-600 hover:bg-red-500 text-white text-sm px-3 py-2 rounded-md">Supprimer</button>
+                                    </form>
                                 </td>
                             </tr>
+                            @empty
+                            <p>Aucune entreprise</p>
+                            @endforelse
                         </tbody>
                     </table>
                     <div>
-
+                        {{$produits->links()}}
                     </div>
                </div>
             </div>

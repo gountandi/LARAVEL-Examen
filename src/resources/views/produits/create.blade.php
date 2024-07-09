@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Commandes') }}
+            {{ __('Produits') }}
         </h2>
     </x-slot>
 
@@ -14,23 +14,29 @@
             </div>
             <div class="bg-white flex items-center justify-between mx-6 px-6 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                <div class="p-6 w-full space-y-6">
-                <form action="" method="post">
+                <form action="{{route('produits.store')}}" method="post">
                     @csrf
                     <div class="space-y-6">
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="">Libelle</label>
-                                <input type="text" name="" id="" class="border-gray-300 rounded-md w-full">
+                                <input type="text" name="libelle" id="libelle" value="{{old('libelle')}}"class="border-gray-300 rounded-md w-full">
                             </div>
                             <div class="space-y-2 w-1/3">
                                 <label for="user">Prix</label>
-                                <input type="number" name="" id="" class="border-gray-300 rounded-md w-full">
+                                <input type="number" name="prix" id="prix" value="{{old('prix')}}" class="border-gray-300 rounded-md w-full">
                             </div>
                         </div>
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="produit">Quantité</label>
-                                <input type="number" name="" id="" class="border-gray-300 rounded-md w-full">
+                                <input type="number" name="quantite" id="quantite" value="{{old('quantite')}}"class="border-gray-300 rounded-md w-full">
+                            </div>
+                        </div>
+                        <div class="flex space-x-3 items-center">
+                            <div class="space-y-2 w-1/3">
+                                <label for="inputImage" class="form-label">Image</label>
+                                <input type="file" name="image" id="inputImage">
                             </div>
                         </div>
                     </div>
@@ -45,5 +51,4 @@
         </div>
     </div>
 </x-app-layout>
-
 
