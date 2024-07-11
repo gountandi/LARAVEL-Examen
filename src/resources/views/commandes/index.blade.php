@@ -12,9 +12,10 @@
                     {{ __("Liste des commandes") }}
                 </div>
                 <div>
-                    <a href="">
+                <form action="{{route('commandes.create')}}" method="get">
+                        @csrf
                         <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Ajouter</button>
-                    </a>
+                    </form>
                 </div>
             </div>
             <div class="bg-white flex items-center justify-between mx-6 px-6 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -66,6 +67,9 @@
                                     </form>                                
                                 </td>
                             </tr>
+                            @empty
+                            <p>Aucune commande</p>
+                            @endforelse
                         </tbody>
                     </table>
                     <div>

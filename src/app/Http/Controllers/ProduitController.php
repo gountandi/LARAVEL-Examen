@@ -24,7 +24,8 @@ class ProduitController extends Controller
              $produits = Produit::paginate($pagination_number);
  
         }
-        return view('produits.index', compact('produits'));
+        $chemin_image="/storage/produits/";
+        return view('produits.index', compact('produits',"chemin_image"));
     }
 
     /**
@@ -40,16 +41,30 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'libelle' => 'required|max:255',
+        
+        $validated_data=$request->validate([
+            'libelle' => 'required|max:255|unique:produits',
             'prix' => 'required',
             'quantite' => 'required',
-            'image'=>'required',
-           
-            
-          ]);
-        Produit::create($request->all());
+            'image'=>'required|image',
+        ]);
+        //Generer l'image
+        $image_produit=$request->file("image");
+        $id=Produit::max("id")+1;
+        $ext= $image_produit->getClientOriginalExtension();
+        $nom_image=strtolower($request->libelle."_".$id.".".$ext);
 
+        //sauvegarder l'image
+        $image_produit->storeAs("public/produits", $nom_image);
+
+        //changer le chemin de l'image
+        $data=$validated_data;
+        $data["image"]=$nom_image;
+
+        //dd($data);
+
+        Produit::create($data);
+        
         return redirect()->route('produits.index');
     }
 

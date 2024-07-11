@@ -16,6 +16,8 @@ class LigneCommande extends Model
         
     ];
 
+    protected $table='lignes_commandes';
+
     public function commande() : BelongsTo {
 
         return $this->belongsTo(Commande::class);

@@ -38,7 +38,10 @@
                         <tbody>
                         @forelse($produits as $produit)
                             <tr class="bg-gray-100">
-                            <td class="py-3 px-6"><img src="/images/{{ $produit->image }}" width="100px"></td>
+                            <td class="py-3 px-6">
+                            {{$produit->image}}  
+                            {{ $chemin_image.$produit->image }}
+                            <img src="{{ $chemin_image.$produit->image }}" width="100px" alt="{{$chemin_image.$produit->image }}"></td>
                                 <td class="py-3 px-6">
                                 {{$produit->libelle}}
                                 </td>
@@ -64,7 +67,7 @@
                                 </td>
                             </tr>
                             @empty
-                            <p>Aucune entreprise</p>
+                            <p>Aucun produit</p>
                             @endforelse
                         </tbody>
                     </table>

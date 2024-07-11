@@ -14,7 +14,7 @@
             </div>
             <div class="bg-white flex items-center justify-between mx-6 px-6 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                <div class="p-6 w-full space-y-6">
-                <form action="{{route('produits.store')}}" method="post">
+                <form action="{{route('produits.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-6">
                         <div class="flex space-x-3 items-center">
@@ -30,13 +30,13 @@
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="produit">Quantité</label>
-                                <input type="number" name="quantite" id="quantite" value="{{old('quantite')}}"class="border-gray-300 rounded-md w-full">
+                                <input type="number" name="quantite" id="quantite" value="{{old('quantite')}}" class="border-gray-300 rounded-md w-full">
                             </div>
                         </div>
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="inputImage" class="form-label">Image</label>
-                                <input type="file" name="image" id="inputImage" class="border-gray-300 rounded-md w-full">
+                                <input type="file" name="image" id="inputImage" value="{{old('image')}}" class="border-gray-300 rounded-md w-full">
                             </div>
                         </div>
                     </div>

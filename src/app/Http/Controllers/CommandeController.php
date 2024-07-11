@@ -13,7 +13,7 @@ class CommandeController extends Controller
     public function index()
     {
         $pagination_number=5;
-        $commandes = Produit::paginate($pagination_number);
+        $commandes = Commande::paginate($pagination_number);
         return view('commandes.index', compact('commandes'));
     }
 
@@ -37,7 +37,7 @@ class CommandeController extends Controller
            
             
           ]);
-        Commnde::create($request->all());
+        Commande::create($request->all());
 
         return redirect()->route('commandes.index');
     }
