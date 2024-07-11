@@ -37,7 +37,7 @@
                             <tr class="bg-gray-100">
                             <td class="py-3 px-6"><img src="/images/{{ $commande->image }}" width="100px"></td>
                                 <td class="py-3 px-6">
-                                {{$commande->users->name}}
+                                {{$commande->vendeur_id}}
                                 </td>
                                 <td class="py-3 px-6">
                                 {{$commande->client}}
@@ -49,7 +49,7 @@
                                 {{$commande->date}}
                                 </td>
                                 <td class="py-3 px-6">
-                                    <a href="">
+                                    <a href="{{route('generer_facture',$commande)}}">
                                         <button class="bg-green-600 hover:bg-green-500 text-white text-sm px-3 py-2 rounded-md">Facture</button>
                                     </a>
                                     <a href="{{route('commandes.edit',$commande)}}">

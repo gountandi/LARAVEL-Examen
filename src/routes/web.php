@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('commandes', CommandeController::class);
 
 
-    
+    Route::get("/commandes/{commande}/facture",[CommandeController::class,'generer_facture'])->name('generer_facture');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

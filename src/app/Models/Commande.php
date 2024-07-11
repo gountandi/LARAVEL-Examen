@@ -14,21 +14,21 @@ class Commande extends Model
     protected $fillable=[
         'client',
         'montant',                         
-        'user_id',
+        'vendeur_id',
         'date',
     ];
 
     
 
-    public function user() : BelongsTo {
+    public function vendeur() : BelongsTo {
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, "vendeur_id");
 
     }
 
-    public function lignescomandes(): HasMany {
+    public function lignescommandes(): HasMany {
 
-        return $this->hasMany(LigneCommande::class);
+        return $this->hasMany(LigneCommande::class, "cmd_id");
 
     }
 

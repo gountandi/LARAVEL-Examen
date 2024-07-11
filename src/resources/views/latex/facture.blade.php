@@ -15,18 +15,18 @@
 \end{center}
 \begin{center}
 \begin{flushleft}
-Date: 29/11/2023 \\
-Nom du client : {{ "Je suis dans un fichier .blade.php" }} (nom du client)
+Date: {{$commande->date}} \\
+Nom du client : {{$commande->client}}
 \end{flushleft}
 \vspace{0.5cm}
 \begin{tabular}{|p{1.5cm}|p{10cm}|p{1.5cm}|p{3cm}|}
 \hline
 Quantité & Désignation & Prix Unitaire & Total \\
 \hline
-- & - & - & - \\
+@foreach($commande->lignescommandes as $ligne)
 \hline
-- & - & - & - \\
-\hline
+{{$ligne->quantite}}&{{$ligne->produit->libelle}} & {{$ligne->produit->prix}}& {{$ligne->produit->prix}} \\
+@endforeach
 \multicolumn{2}{|c|}{Somme total} &  \multicolumn{2}{|c|}{- FCFA}\\
 \hline
 \end{tabular}

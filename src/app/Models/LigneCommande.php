@@ -20,13 +20,13 @@ class LigneCommande extends Model
 
     public function commande() : BelongsTo {
 
-        return $this->belongsTo(Commande::class);
+        return $this->belongsTo(Commande::class, "cmd_id");
 
     }
 
     public function produit() : BelongsTo {
 
-        return $this->belongsTo(Produit::class,"vendeur_id");
+        return $this->belongsTo(Produit::class,"prod_id");
 
     }
 }

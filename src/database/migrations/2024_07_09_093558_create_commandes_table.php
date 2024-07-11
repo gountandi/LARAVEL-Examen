@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->bigInteger("client");
-            $table->integer("montant");
+            $table->integer("montant")->default(0);
             $table->datetime("date")->default("now");
             $table->bigInteger("vendeur_id");
             $table->foreign("vendeur_id")->references("id")->on("users");
