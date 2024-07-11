@@ -28,32 +28,42 @@
                             <th class="py-3 px-6">Vendeur</th>
                             <th class="py-3 px-6">Client</th>
                             <th class="py-3 px-6">Monant</th>
+                            <th class="py-3 px-6">Date</th>
                             <th class="py-3 px-6">Actions</th>
                         </thead>
                         <tbody>
+                        @forelse($commandes as $commande)
                             <tr class="bg-gray-100">
+                            <td class="py-3 px-6"><img src="/images/{{ $commande->image }}" width="100px"></td>
                                 <td class="py-3 px-6">
-
+                                {{$commande->users->name}}
                                 </td>
                                 <td class="py-3 px-6">
-
+                                {{$commande->client}}
                                 </td>
                                 <td class="py-3 px-6">
-
+                                {{$commande->montant}}
+                                </td>
+                                <td class="py-3 px-6">
+                                {{$commande->date}}
                                 </td>
                                 <td class="py-3 px-6">
                                     <a href="">
                                         <button class="bg-green-600 hover:bg-green-500 text-white text-sm px-3 py-2 rounded-md">Facture</button>
                                     </a>
-                                    <a href="">
+                                    <a href="{{route('commandes.edit',$commande)}}">
                                         <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Editer</button>
                                     </a>
-                                    <a href="">
+                                    <a href="{{route('commandes.show',$commande)}}">
                                         <button class="bg-yellow-600 hover:bg-yellow-500 text-white text-sm px-3 py-2 rounded-md">Consulter</button>
                                     </a>
-                                    <a href="">
+                                    
+                                    <form action="{{route('commandes.destroy',$commande)}}" method="post">
+
+                                    @csrf
+                                    @method("DELETE")
                                         <button class="bg-red-600 hover:bg-red-500 text-white text-sm px-3 py-2 rounded-md">Supprimer</button>
-                                    </a>
+                                    </form>                                
                                 </td>
                             </tr>
                         </tbody>

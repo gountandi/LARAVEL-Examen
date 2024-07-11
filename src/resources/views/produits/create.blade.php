@@ -36,7 +36,7 @@
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="inputImage" class="form-label">Image</label>
-                                <input type="file" name="image" id="inputImage">
+                                <input type="file" name="image" id="inputImage" class="border-gray-300 rounded-md w-full">
                             </div>
                         </div>
                     </div>

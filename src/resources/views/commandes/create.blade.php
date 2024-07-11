@@ -24,18 +24,18 @@
                             </div>
                             <div class="space-y-2 w-1/3">
                                 <label for="user">Vendeur</label>
-                                <select name="" id="">
+                                <select name="vendeur_id" id="vendeur_id">
                                         <option value=""></option>
                                 </select>
                             </div>
                         </div>
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
-                                <label for="">Produit</label>
-                                <input type="text" name="" id="" class="border-gray-300 rounded-md w-full">
+                                <label for="">Date</label>
+                                <input type="date" name="date" id="date" class="border-gray-300 rounded-md w-full">
                             </div>
                             <div class="space-y-2 w-1/3">
-                                <label for="">Quantite</label>
+                                <label for="">*Montant</label>
                                 <input type="number" name="" id="" class="border-gray-300 rounded-md w-full">
                             </div>
                             <div>

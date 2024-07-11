@@ -12,7 +12,9 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        //
+        $pagination_number=5;
+        $commandes = Produit::paginate($pagination_number);
+        return view('commandes.index', compact('commandes'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CommandeController extends Controller
      */
     public function create()
     {
-        //
+        return view('commandes.create');
     }
 
     /**
@@ -28,7 +30,16 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'client' => 'required',
+            'montant' => 'required',
+            'date' => 'required',
+           
+            
+          ]);
+        Commnde::create($request->all());
+
+        return redirect()->route('commandes.index');
     }
 
     /**
@@ -36,7 +47,7 @@ class CommandeController extends Controller
      */
     public function show(Commande $commande)
     {
-        //
+        return view('commndes.show', compact('commande'));
     }
 
     /**
@@ -44,7 +55,8 @@ class CommandeController extends Controller
      */
     public function edit(Commande $commande)
     {
-        //
+        return view('commandes.edit',compact('commande'));
+
     }
 
     /**
@@ -60,6 +72,7 @@ class CommandeController extends Controller
      */
     public function destroy(Commande $commande)
     {
-        //
+        $commande->delete();
+        return redirect()->route('commandes.index');
     }
 }
