@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\LigneCommande;
+
+use App\Models\Produit;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Ismaelw\LaraTeX\LaraTeX;
 
@@ -22,8 +26,10 @@ class CommandeController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
     {
-        return view('commandes.create');
+        $produit=Produit::all();
+        return view('commandes.create',compact('produit'));
     }
 
     /**
@@ -38,9 +44,28 @@ class CommandeController extends Controller
            
             
           ]);
-        Commande::create($request->all());
+        //Commande::create($request->all());
 
-        return redirect()->route('commandes.index');
+        $client=$request->input("cilent");
+        $vendeur=Auth::user();
+        $produits_ids=$request->input(("produits_ids"));
+        $quantites=$request->input("quantites");
+
+        Commande::create([
+            "client"=>$client,
+            "vendeur_id"=>$vendeur->id,
+        ]);
+
+        for($i=0;$i<count($produits_ids);$i++){
+            $produit=$produits_ids[$i];
+            $quantite=$quantites[$i];
+
+            LigneCommande::create([
+                "quantite"=>$quantite,
+                "prod_id"=>$produit,
+            ]);
+            
+        }
     }
 
     /**

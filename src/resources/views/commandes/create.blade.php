@@ -1,4 +1,5 @@
 <x-app-layout>
+    @vite('resources/js/commande.js')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Commandes') }}
@@ -16,60 +17,46 @@
                <div class="p-6 w-full space-y-6">
                 <form action="" method="post">
                     @csrf
+                    <input type="text" value="" name="produitd_id[]"sid="">
+
                     <div class="space-y-6">
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
                                 <label for="client">Client</label>
                                 <input type="text" name="client" id="client" class="border-gray-300 rounded-md w-full">
                             </div>
-                            <div class="space-y-2 w-1/3">
-                                <label for="user">Vendeur</label>
-                                <select name="vendeur_id" id="vendeur_id">
-                                        <option value=""></option>
-                                </select>
-                            </div>
+                            
                         </div>
                         <div class="flex space-x-3 items-center">
                             <div class="space-y-2 w-1/3">
-                                <label for="">Date</label>
-                                <input type="date" name="date" id="date" class="border-gray-300 rounded-md w-full">
+                                <label for="">Produit</label>
+                                <select name="produit" id="produit_id" class="border-gray-300 rounded-md w-full">
+                                <option value="Sélectioné"></option>
+                                @foreach($produit as $prod)
+                                <option value="{{$prod->id}}">{{$prod->libelle}}</option>
+                                @endforeach
+                                </select>
+                                
                             </div>
                             <div class="space-y-2 w-1/3">
-                                <label for="">*Montant</label>
-                                <input type="number" name="" id="" class="border-gray-300 rounded-md w-full">
+                                <label for="">*Quantite</label>
+                                <input type="number" name="quantite" id="quantite_id" class="border-gray-300 rounded-md w-full">
                             </div>
                             <div>
-                                <button class="mt-6 bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">+</button>
+                                <button class="mt-6 bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md" type="button" id="btn_ajouter">+</button>
                             </div>
                         </div>
                         <div class="space-y-3 items-center">
                             <button class="mt-6 bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Enregistrer</button>
-                            <table class="w-full text-left">
+                            <table class="w-full text-left" >
                                 <thead class="text-lg font-semibold bg-gray-300">
                                     <th class="py-3 px-6">Produit</th>
                                     <th class="py-3 px-6">Quantité</th>
                                     <th class="py-3 px-6">Monant</th>
                                     <th class="py-3 px-6">Actions</th>
                                 </thead>
-                                <tbody>
-                                    <tr class="bg-gray-100">
-                                        <td class="py-3 px-6">
-
-                                        </td>
-                                        <td class="py-3 px-6">
-
-                                        </td>
-                                        <td class="py-3 px-6">
-                                        </td>
-                                        <td class="py-3 px-6">
-                                            <a href="">
-                                                <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-md">Editer</button>
-                                            </a>
-                                            <a href="">
-                                                <button class="bg-red-600 hover:bg-red-500 text-white text-sm px-3 py-2 rounded-md">Supprimer</button>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <tbody id="tableau_lignes_commandes">
+                                       
                                 </tbody>
                             </table>
                         </div>

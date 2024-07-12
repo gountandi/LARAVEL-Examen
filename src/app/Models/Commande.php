@@ -38,4 +38,5 @@ class Commande extends Model
             'date' => 'datetime',
         ];
     }
+    
 }
